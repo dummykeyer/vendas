@@ -7,6 +7,6 @@ RUN --mount=type=cache,target=/root/.m2 mvn -B -q package -DskipTests -Dmaven.te
 FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8081
+EXPOSE 8080
 ENV JAVA_OPTS="-XX:TieredStopAtLevel=1 -XX:+UseSerialGC -XX:MaxRAMPercentage=75 -Dspring.main.lazy-initialization=true -Dspring.jmx.enabled=false"
 ENTRYPOINT ["sh","-c","java $JAVA_OPTS -jar app.jar"]
